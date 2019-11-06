@@ -2,3 +2,11 @@ body {
     padding-top: 75px;
     padding-bottom: 75px;
 }
+
+li {
+    cursor: pointer;
+}
+
+li:hover {
+    background: #eeeeee;
+}
