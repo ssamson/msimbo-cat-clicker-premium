@@ -1,56 +1,122 @@
-// Create cats
-const chron = { name: 'Chron', img: './images/chron.jpg', clicks: 0 };
-const git = { name: 'Git', img: './images/git.jpg', clicks: 0 };
-const meow = {name: 'Meow', img: './images/meow.jpg', clicks: 0 };
-const purr = {name: 'Purr', img: './images/purr.jpg', clicks: 0 };
-const sync = {name: 'Sync', img: './images/sync.jpg', clicks: 0 };
+const view = {
+    ul: document.querySelector('ul'),
+    display: document.querySelector('#display'),
+    renderList: function (cats) {
+        for (cat of cats) {
+            const li = document.createElement('li');
+            li.textContent = cat.name;
+            li.classList.add('list-group-item');
+            li.addEventListener(
+                'click',
+                (catCopy => {
+                    return () => {
+                        view.renderCat(catCopy);
+                    };
+                })(cat)
+            );
+            view.ul.appendChild(li);
+        }
 
-const cats = [chron, git, meow, purr, sync];
+    },
+    renderCat: function(cat) {
+        // rest display area
+        display.innerHTML = '';
+        // Create name, image and clicks;
+        const name = document.createElement('h3');
+        name.textContent = cat.name;
+
+        const image = document.createElement('img');
+        image.src = cat.img;
+        image.addEventListener('click', () => {
+            cat.clicks++;
+            clicks.textContent = `clicks: ${cat.clicks}`;
+        });
+
+        const clicks = document.createElement('p');
+        clicks.textContent = `clicks: ${cat.clicks}`;
+
+        // append into display
+        display.appendChild(name);
+        display.appendChild(image);
+        display.appendChild(clicks);
+    }
+};
+
+const model = {
+    cats: [
+        { name: 'Chron', img: './images/chron.jpg', clicks: 0 },
+        { name: 'Git', img: './images/git.jpg', clicks: 0 },
+        {name: 'Meow', img: './images/meow.jpg', clicks: 0 },
+        {name: 'Purr', img: './images/purr.jpg', clicks: 0 },
+        {name: 'Sync', img: './images/sync.jpg', clicks: 0 }
+    ]
+};
+
+const octopus = {
+    init: function() {
+        view.renderList(model.cats);
+    }
+};
+
+octopus.init();
+
+
+
+
+
+// Create cats
+// const chron = { name: 'Chron', img: './images/chron.jpg', clicks: 0 };
+// const git = { name: 'Git', img: './images/git.jpg', clicks: 0 };
+// const meow = {name: 'Meow', img: './images/meow.jpg', clicks: 0 };
+// const purr = {name: 'Purr', img: './images/purr.jpg', clicks: 0 };
+// const sync = {name: 'Sync', img: './images/sync.jpg', clicks: 0 };
+
+// const cats = [chron, git, meow, purr, sync];
 
 // Select cats list placeholder
-const ul = document.querySelector('ul');
+// const ul = document.querySelector('ul');
 
 // render cats into html
-for (cat of cats) {
-    const li = document.createElement('li');
-    li.textContent = cat.name;
-    li.classList.add('list-group-item');
-    li.addEventListener(
-        'click',
-        (catCopy => {
-            return () => {
-                renderCat(catCopy);
-            };
-        })(cat)
-    );
-    ul.appendChild(li);
-}
+// for (cat of cats) {
+//     const li = document.createElement('li');
+//     li.textContent = cat.name;
+//     li.classList.add('list-group-item');
+//     li.addEventListener(
+//         'click',
+//         (catCopy => {
+//             return () => {
+//                 renderCat(catCopy);
+//             };
+//         })(cat)
+//     );
+//     ul.appendChild(li);
+// }
 
 // Select display area
-const display = document.querySelector('#display');
+// const display = document.querySelector('#display');
 
-function renderCat(cat) {
+// function renderCat(cat) {
     // rest display area
-    display.innerHTML = '';
+    // display.innerHTML = '';
     // Create name, image and clicks;
-    const name = document.createElement('h3');
-    name.textContent = cat.name;
+    // const name = document.createElement('h3');
+    // name.textContent = cat.name;
 
-    const image = document.createElement('img');
-    image.src = cat.img;
-    image.addEventListener('click', () => {
-        cat.clicks++;
-        clicks.textContent = `clicks: ${cat.clicks}`;
-    });
+    // const image = document.createElement('img');
+    // image.src = cat.img;
+    // image.addEventListener('click', () => {
+    //     cat.clicks++;
+    //     clicks.textContent = `clicks: ${cat.clicks}`;
+    // });
 
-    const clicks = document.createElement('p');
-    clicks.textContent = `clicks: ${cat.clicks}`;
+    // const clicks = document.createElement('p');
+    // clicks.textContent = `clicks: ${cat.clicks}`;
 
     // append into display
-    display.appendChild(name);
-    display.appendChild(image);
-    display.appendChild(clicks);
-}
+//     display.appendChild(name);
+//     display.appendChild(image);
+//     display.appendChild(clicks);
+// }
 
 
 // select cat names
